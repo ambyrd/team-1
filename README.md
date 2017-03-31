@@ -2,13 +2,19 @@
 Single page app utilizing the Google Drive API
 
 ## The 3 Unique Views:
-The Following is a rough outline of what the 3 unque page views for this single page application should contain.
+The Following is a rough outline of what the 3 unique page views for this single page application should contain.
 
 ### File Permissions:
+A view displaying the files in the user's Drive and the people that those files are shared with
+  Allows the user to share/revoke sharing with other users
 
 ### File Upload/Download:
+A view displaying the files in the user's Drive
+  Allows the user to download and upload files
 
 ### Files Accessed/Admin View:
+A view displaying the history of interactions with the files in the user's Drive
+  Shows the user what files were edited, when they were edited, and who edited them
 
 ### Helpful Links:
 [Google's RESTv2 API](https://developers.google.com/drive/v2/reference/)
@@ -42,4 +48,3 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
