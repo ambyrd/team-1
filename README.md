@@ -1,6 +1,20 @@
-# google-drive-app
+# CSC515 GDrive app Readme
+Single page app utilizing the Google Drive API
 
-> A web app for interacting with Google Drive
+## The 3 Unique Views:
+The Following is a rough outline of what the 3 unque page views for this single page application should contain.
+
+### File Permissions:
+
+### File Upload/Download:
+
+### Files Accessed/Admin View:
+
+### Helpful Links:
+[Google's RESTv2 API](https://developers.google.com/drive/v2/reference/)
+
+[Vue.js Framework Guide](https://vuejs.org/v2/guide/)
+
 
 ## Build Setup
 
@@ -28,3 +42,4 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
