@@ -15,17 +15,17 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/upload/:filename',
+      path: '/upload/:filename?',
       name: 'Upload',
       component: Upload
     },
     {
-      path: '/permissions/:filename',
+      path: '/permissions/:filename?',
       name: 'Permissions',
       component: Permissions
     },
     {
-      path: '/admin/:filename',
+      path: '/admin/:filename?',
       name: 'Admin',
       component: Admin
     }
