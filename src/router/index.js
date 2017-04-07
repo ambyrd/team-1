@@ -20,7 +20,7 @@ export default new Router({
       component: Upload
     },
     {
-      path: '/permissions/:filename?',
+      path: '/permissions',
       name: 'Permissions',
       component: Permissions
     },

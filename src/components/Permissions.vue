@@ -20,15 +20,52 @@
       </b-nav>
     </b-collapse>
   </b-navbar>
-    
+  
+  <!-- Table of files and their permissions -->
+  <b-table striped hover :items="files" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
+    <template slot="name" scope="item">
+      {{item.value}}
+    </template>
+  </b-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'permissions',
   data () {
-    return {}
+    return {
+      files: [{
+        name: 'HelloWorld.txt',
+        owner: 'GDrive User',
+        permissions: 'Read, Write'
+      },
+      {
+        name: 'Image.png',
+        owner: 'GDrive User',
+        permissions: 'Read'
+      },
+      {
+        name: 'script.js',
+        owner: 'GDrive User',
+        permissions: 'Read'
+      }],
+      fields: {
+        name: {
+          label: 'Filename',
+          sortable: true
+        },
+        owner: {
+          label: 'Owner'
+        },
+        permissions: {
+          label: 'Permissions'
+        }
+      },
+      currentPage: null,
+      perPage: null,
+      filter: null
+    }
   }
 }
 </script>
