@@ -14,3 +14,9 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+// Template for icons in file list
+Vue.component('file-icon', {
+  props: ['file'],
+  template: '<li>{{ file.name }}</li>'
+})
