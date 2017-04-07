@@ -1,5 +1,5 @@
 <template>
-  <div class="permissions-view">
+  <div class="admin-view">
     <b-navbar toggleable type="inverse" variant="success">
 
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
@@ -20,46 +20,54 @@
       </b-nav>
     </b-collapse>
   </b-navbar>
-  
-  <!-- Table of files and their permissions -->
+
+  <!-- Table of file changes in the drive -->
   <b-table striped hover :items="files" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
     <template slot="name" scope="item">
       {{item.value}}
     </template>
   </b-table>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'permissions',
+  name: 'hello',
   data () {
     return {
       files: [{
         name: 'HelloWorld.txt',
-        owner: 'GDrive User',
-        permissions: 'Read, Write'
+        date: '04/07/2017',
+        user: 'GDrive User',
+        type: 'Edit'
       },
       {
-        name: 'Image.png',
-        owner: 'GDrive User',
-        permissions: 'Read'
+        name: 'Homework3.doc',
+        date: '04/05/2017',
+        user: 'GDrive User',
+        type: 'Delete'
       },
       {
-        name: 'script.js',
-        owner: 'GDrive User',
-        permissions: 'Read'
+        name: 'background.jpg',
+        date: '04/03/2017',
+        user: 'GDrive User',
+        type: 'Delete'
       }],
       fields: {
         name: {
           label: 'Filename',
           sortable: true
         },
-        owner: {
-          label: 'Owner'
+        date: {
+          label: 'Date Modified',
+          sortable: true
         },
-        permissions: {
-          label: 'Permissions'
+        user: {
+          label: 'Changed By'
+        },
+        type: {
+          label: 'Change'
         }
       },
       currentPage: null,

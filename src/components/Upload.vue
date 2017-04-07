@@ -13,7 +13,7 @@
       <b-nav is-nav-bar>
         <router-link to="/upload"><b-nav-item>Upload/Download Files</b-nav-item></router-link>
         <router-link to="/permissions"><b-nav-item>View File Permissions</b-nav-item></router-link>
-        <router-link to="/admin"><b-nav-item>View Access History</b-nav-item></router-link>
+        <router-link to="/history"><b-nav-item>View Access History</b-nav-item></router-link>
       </b-nav>
       
       <b-nav is-nav-bar class="ml-auto">      
@@ -35,7 +35,8 @@
     <br>
     <div class="buttons">
       <b-btn variant="outline-primary" href="#">Download</b-btn>
-      <b-btn variant="outline-warning" href="#">Upload</b-btn>
+      <b-btn variant="outline-success" href="#">Upload</b-btn>
+      <b-btn variant="outline-danger" href="#">Delete</b-btn>
     </div>
   </div>
 </template>

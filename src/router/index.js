@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Upload from '@/components/Upload'
 import Permissions from '@/components/Permissions'
-import Admin from '@/components/Admin'
+import History from '@/components/History'
 
 Vue.use(Router)
 
@@ -25,9 +25,9 @@ export default new Router({
       component: Permissions
     },
     {
-      path: '/admin/:filename?',
-      name: 'Admin',
-      component: Admin
+      path: '/history',
+      name: 'History',
+      component: History
     }
   ]
 })
