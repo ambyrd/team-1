@@ -1,7 +1,10 @@
 <template>
-  <div id="app">  
+  <div id="app">
 
      <router-view></router-view>
+     <b-btn id='sign-in-or-out-button'>Sign In</b-btn>
+     <b-btn id='revoke-access-button'>Sign In</b-btn>
+     <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
   </div>
 </template>
 

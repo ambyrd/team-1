@@ -3,6 +3,7 @@
     <b-jumbotron header="GDrive"
                  lead="A micro file management app" >
      <form>
+        <!--
         <div class="form-group">
           <label for="exampleInputEmail1">Email address:</label>
           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
@@ -11,9 +12,11 @@
           <label for="exampleInputPassword1">Password:</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <router-link to="/upload"><button name="btn1" href="#">Go!</button></router-link>
+        -->
+        <router-link to="/upload"><b-btn variant="outline-success" href="#">Go!</b-btn></router-link>
+
       </form>
-        
+
     </b-jumbotron>
   </div>
 </template>
