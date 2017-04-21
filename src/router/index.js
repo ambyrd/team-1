@@ -8,6 +8,7 @@ import History from '@/components/History'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

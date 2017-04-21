@@ -12,8 +12,13 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js App')
-      .assert.elementCount('img', 1)
+      .setValue('input[type=email]', 'Testing Email')
+      .setValue('input[type=password]', 'Testing Password')
+      .click('button[name=btn1]')
+      .pause(1000)
+
+      .assert.elementPresent('.file-view')
+      .pause(1000)
       .end()
   }
 }
