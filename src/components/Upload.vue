@@ -10,10 +10,10 @@
 
     <b-collapse is-nav id="nav_collapse">
       
-      <b-nav is-nav-bar>
-        <router-link to="/upload"><b-nav-item>Upload/Download Files</b-nav-item></router-link>
-        <router-link to="/permissions"><b-nav-item>View File Permissions</b-nav-item></router-link>
-        <router-link to="/history"><b-nav-item>View Access History</b-nav-item></router-link>
+      <b-nav is-nav-bar class="navBar">
+        <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
+        <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
+        <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
       </b-nav>
       
       <b-nav is-nav-bar class="ml-auto">      
@@ -34,9 +34,9 @@
  -->
     <br>
     <div class="buttons">
-      <b-btn variant="outline-primary" href="#">Download</b-btn>
-      <b-btn variant="outline-success" href="#">Upload</b-btn>
-      <b-btn variant="outline-danger" href="#">Delete</b-btn>
+      <button name="downloadBtn" href="#">Download</button>
+      <button name="uploadBtn" href="#">Upload</button>
+      <button name="deleteBtn" href="#">Delete</button>
     </div>
   </div>
 </template>

@@ -17,8 +17,33 @@ module.exports = {
       .click('button[name=btn1]')
       .pause(1000)
 
+      
       .assert.elementPresent('.file-view')
+      //.assert.elementPresent('.navBar')
+      .assert.elementPresent('.uploadLink')
+      .assert.elementPresent('.permissionsLink').assert.elementPresent('.historyLink')
+      .assert.elementPresent('.file-list')
+
+      .click('button[name=downloadBtn]')
+      .click('button[name=uploadBtn]')
+      .click('button[name=deleteBtn]')
+      .click('.permissionsLink')
       .pause(1000)
+
+      .assert.elementPresent('.permissions-view')
+      .assert.elementPresent('.uploadLink')
+      .assert.elementPresent('.permissionsLink').assert.elementPresent('.historyLink')
+      //.assert.elementPresent('.tableVar')
+
+      .click('.historyLink')
+      .pause(1000)
+
+      .assert.elementPresent('.admin-view')
+      .assert.elementPresent('.uploadLink')
+      .assert.elementPresent('.permissionsLink').assert.elementPresent('.historyLink')
+      //.assert.elementPresent('.tableVar')
+
+      .pause(5000)
       .end()
   }
 }

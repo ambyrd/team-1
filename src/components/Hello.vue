@@ -11,7 +11,7 @@
           <label for="exampleInputPassword1">Password:</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <router-link to="/upload"><button name="btn1"href="#">Go!</button></router-link>
+        <router-link to="/upload"><button name="btn1" href="#">Go!</button></router-link>
       </form>
         
     </b-jumbotron>
