@@ -4,9 +4,11 @@
 
     <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-    <b-link class="navbar-brand" to="/">
-      <span>GDrive</span>
-    </b-link>
+    <router-link to="/" class="gDrive">
+      <b-link class="navbar-brand" to="/">
+        <span>GDrive</span>
+      </b-link>
+    </router-link>
 
     <b-collapse is-nav id="nav_collapse">
       
