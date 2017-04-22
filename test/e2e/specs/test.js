@@ -14,8 +14,8 @@ module.exports = {
 
       //Checking front page
       .assert.elementPresent('.hello')
-      .setValue('input[type=email]', 'Testing Email')
-      .setValue('input[type=password]', 'Testing Password')
+      //.setValue('input[type=email]', 'Testing Email')
+      //.setValue('input[type=password]', 'Testing Password')
       .click('button[name=btn1]')
       .pause(1000)
 
