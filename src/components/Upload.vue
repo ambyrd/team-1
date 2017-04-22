@@ -11,22 +11,24 @@
     </router-link>
 
     <b-collapse is-nav id="nav_collapse">
-      
-      <b-nav is-nav-bar class="navBar">
-        <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
-        <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
-        <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
-      </b-nav>
-      
-      <b-nav is-nav-bar class="ml-auto">      
+
+     <b-nav is-nav-bar class="navBar">
+       <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
+       <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
+       <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
+     </b-nav>
+
+      <b-nav is-nav-bar class="ml-auto">
       </b-nav>
     </b-collapse>
   </b-navbar>
 
-  <b-list-group class="file-list">
-   <b-list-group-item v-for='f in fileList' v-bind:to="/upload/ + f.name"> 
+  <b-list-group class="file-list" id="file-list">
+   <!--
+   <b-list-group-item v-for='f in fileList' v-bind:to="/upload/ + f.name">
     {{ f.name }}
    </b-list-group-item>
+   -->
   </b-list-group>
 
 <!--
