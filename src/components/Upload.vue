@@ -23,10 +23,12 @@
     </b-collapse>
   </b-navbar>
 
-  <b-list-group class="file-list">
+  <b-list-group class="file-list" id="file-list">
+   <!--
    <b-list-group-item v-for='f in fileList' v-bind:to="/upload/ + f.name">
     {{ f.name }}
    </b-list-group-item>
+   -->
   </b-list-group>
 
 <!--

@@ -2,9 +2,12 @@
   <div id="app">
 
      <router-view></router-view>
-     <b-btn id='sign-in-or-out-button'>Sign In</b-btn>
-     <b-btn id='revoke-access-button'>Sign In</b-btn>
-     <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+
+     <div class="col-md-12">
+        <b-btn id='sign-in-or-out-button'>Sign In</b-btn>
+        <b-btn id='revoke-access-button'>Sign In</b-btn>
+        <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+     </div>
   </div>
 </template>
 

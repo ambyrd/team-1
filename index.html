@@ -4,6 +4,18 @@
     <meta charset="utf-8">
     <title>Google Drive App</title>
 
+    <style>
+       .space-left{
+          margin-left: 5px;
+       }
+       .space-right{
+          margin-right: 5px;
+       }
+       .pull-right{
+          float: right;
+       }
+    </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
             onload="this.onload=function(){};handleClientLoad()"
@@ -28,9 +40,9 @@
         // Get API key and client ID from API Console.
         // 'scope' field specifies space-delimited list of access scopes.
         gapi.client.init({
-            'apiKey': 'AIzaSyB4EZzDvjqQFtyeXHezEzIH7xcCAVxLpYk',
+            'apiKey': 'YOUR_API_KEY',
             'discoveryDocs': [discoveryUrl],
-            'clientId': '122169859841-5de7abc8a7hhqf8jt0ri64bf20uh1rbj.apps.googleusercontent.com',
+            'clientId': 'YOUR_CLIENT_ID',
             'scope': SCOPE
         }).then(function () {
           GoogleAuth = gapi.auth2.getAuthInstance();
@@ -95,7 +107,46 @@
         // Execute the API request.
         request.execute(function(response) {
           console.log(response);
+          var files = response.files;
+          for(var x = 0; x < files.length; x++)
+          {
+             file = files[x];
+             if(file.mimeType != "application/vnd.google-apps.folder")
+             {
+                console.log(file, file.mimeType);
+                btnInfo = $('<button/>', {onclick: "getFileMetadata('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Info'});
+                btnPerm = $('<button/>', {onclick: "getFilePermissions('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Permissions'});
+                div = $('<div/>', {class: 'list-group-item list-group-item-action', text: file.name});
+                div.append(btnInfo);
+                div.append(btnPerm);
+                $("#file-list").append(div);
+             }
+          }
         });
+      }
+
+      function getFileMetadata(id){
+         console.log("getFileMetadata(" + id + ")");
+         var request = gapi.client.request({
+           'method': 'GET',
+           'path': '/drive/v3/files/' + id
+         });
+
+         request.execute(function(response) {
+            console.log(response);
+         });
+      }
+
+      function getFilePermissions(id){
+         console.log("getFilePermissions(" + id + ")");
+         var request = gapi.client.request({
+           'method': 'GET',
+           'path': '/drive/v3/files/' + id + '/permissions'
+         });
+
+         request.execute(function(response) {
+            console.log(response);
+         });
       }
     </script>
 
