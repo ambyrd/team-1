@@ -28,7 +28,7 @@ A view displaying the history of interactions with the files in the user's Drive
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# server with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
