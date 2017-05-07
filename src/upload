@@ -1,0 +1,27 @@
+These are the steps for uploading. Anything with ' ' are variables we need to generate
+
+
+///////////////////////////////////////////////////
+
+POST /drive/v3/files HTTP/1.1
+Host: www.googleapis.com
+Authorization: Bearer 'OAuth 2.0 access token here'
+Content-Length: 'content length'
+Content-Type: application/json; charset=UTF-8
+
+{
+  "name": 'myFile'
+}
+
+/////////////////////////////////////////////////
+
+Get response from above request
+Obtain Id from response: responseId = response.id
+
+/////////////////////////////////////////////////
+
+PUT https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&upload_id=responseId HTTP/1.1
+Content-Length: 'content length'
+Content-Type: image/jpeg
+
+[BYTES 0 - 'content length - 1']

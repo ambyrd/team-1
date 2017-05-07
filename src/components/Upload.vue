@@ -24,11 +24,9 @@
   </b-navbar>
 
   <b-list-group class="file-list" id="file-list">
-   <!--
    <b-list-group-item v-for='f in fileList' v-bind:to="/upload/ + f.name">
     {{ f.name }}
    </b-list-group-item>
-   -->
   </b-list-group>
 
 <!--
@@ -39,7 +37,7 @@
     <br>
     <div class="buttons">
       <button name="downloadBtn" href="#">Download</button>
-      <button name="uploadBtn" href="#">Upload</button>
+      <input type="file" id="myFiles"> Upload
       <button name="deleteBtn" href="#">Delete</button>
     </div>
   </div>
@@ -60,7 +58,9 @@ export default {
     }
   }
 }
-</script>
+// driveMethods.getFiles()
+
+ </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
