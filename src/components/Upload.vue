@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import cmd from '../cmd'
 export default {
   name: 'upload',
   data () {
@@ -54,6 +55,17 @@ export default {
        { name: 'Image.png' },
        { name: 'script.js' }
       ]
+    }
+  },
+  methods: {
+    getFiles () {
+      cmd.getFiles()
+    },
+    getFileMetadata () {
+      cmd.getFileMetadata()
+    },
+    getFilePermissions () {
+      cmd.getFilePermissions()
     }
   }
 }

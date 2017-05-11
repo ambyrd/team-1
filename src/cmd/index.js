@@ -30,7 +30,7 @@ export default{
 
   getFileMetadata (id) {
     console.log('getFileMetadata(" + id + ")')
-    // Request to access gapi for drive "gapi.client.drive.files" specifies the API to use, 
+    // Request to access gapi for drive "gapi.client.drive.files" specifies the API to use,
     // the .get method is the standard Google drive GET method
     // 'fileId' is the file's ID value in string format
     // 'fields' allows for specific subfields to be pulled by listing which ones you want delimitted by a space, with '*' pulling all fields
