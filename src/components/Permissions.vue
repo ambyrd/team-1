@@ -11,18 +11,18 @@
     </router-link>
 
     <b-collapse is-nav id="nav_collapse">
-      
+
       <b-nav is-nav-bar>
          <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
         <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
         <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
       </b-nav>
-      
-      <b-nav is-nav-bar class="ml-auto">      
+
+      <b-nav is-nav-bar class="ml-auto">
       </b-nav>
     </b-collapse>
   </b-navbar>
-  
+
   <!-- Table of files and their permissions -->
   <b-table striped hover :items="files" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
     <template slot="name" scope="item" class="tableVar">
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import cmd from '../cmd'
+
 export default {
   name: 'permissions',
   data () {
@@ -67,6 +69,11 @@ export default {
       currentPage: null,
       perPage: null,
       filter: null
+    }
+  },
+  methods: {
+    getFilePermissions () {
+      cmd.getFilePermissions()
     }
   }
 }
