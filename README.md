@@ -17,7 +17,7 @@ A view displaying the history of interactions with the files in the user's Drive
   Shows the user what files were edited, when they were edited, and who edited them
 
 ### Helpful Links:
-[Google's RESTv2 API](https://developers.google.com/drive/v2/reference/)
+[Google's REST API](https://developers.google.com/drive/v3/reference/)
 
 [Vue.js Framework Guide](https://vuejs.org/v2/guide/)
 
@@ -48,3 +48,18 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## Adding New Methods (For Developers)
+We've changed the way methods are loaded through Vue. There is now a `index.js` file located in the `/src/cmd/` directory.
+The methods are added to that file in the Vue format, as seen here: 
+
+![VueMethodsFormat](/docs/methodFormating.jpg?raw=true)
+
+You will import these methods into each vue by using `import cmd from '../cmd'` in the `<script>` section of each Vue. Then add a new method and call `cmd."methodToImport"` as seen here:
+
+![VueImportMethodFormat](/docs/importingMethodToVue.jpg?raw=true)
+
+## Authentication Script location has changed!
+
+The Authentication script (the place where the api key goes) has changed to main.js
