@@ -12,6 +12,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
+window.isAuthorized = false
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -80,9 +82,9 @@ new Vue({
       console.log(this.googleAuth)
       var user = this.googleAuth.currentUser.get()
       console.log('user', user)
-      var isAuthorized = user.hasGrantedScopes(this.scope)
-      console.log('isAuthorized', isAuthorized)
-      if (isAuthorized) {
+      window.isAuthorized = user.hasGrantedScopes(this.scope)
+      console.log('isAuthorized', window.isAuthorized)
+      if (window.isAuthorized) {
         $('#sign-in-or-out-button').html('Sign out')
         $('#revoke-access-button').css('display', 'inline-block')
         $('#auth-status').html('You are currently signed in and have granted ' +
