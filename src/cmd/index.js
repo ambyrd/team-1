@@ -1,7 +1,3 @@
-// import {router} from '../index'
-
-/* global gapi, $ */
-
 export default{
 
   getFiles () {
@@ -9,27 +5,27 @@ export default{
       'method': 'GET',
       'path': '/drive/v3/files'
     })
-        // Execute the API request.
+    // Execute the API request.
     request.execute(function (response) {
-      console.log(response)
       var files = response.files
       for (var x = 0; x < files.length; x++) {
         let file = files[x]
-        if (file.mimeType !== 'application/vnd.google-apps.folder') {
-          console.log(file, file.mimeType)
-          let btnInfo = $('<button/>', {onclick: "getFileMetadata('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Info'})
-          let btnPerm = $('<button/>', {onclick: "getFilePermissions('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Permissions'})
-          let div = $('<div/>', {class: 'list-group-item list-group-item-action', text: file.name})
-          div.append(btnInfo)
-          div.append(btnPerm)
-          $('#file-list').append(div)
+        if (file.mimeType !== 'application/vnd.google-apps.folder' &&  // ignore folders
+            file.mimeType !== 'application/x-font-ttf') {  // ignore fonts
+          // Extract file info from response and store in a new object
+          let f = {}
+          f.id = file.id
+          f.name = file.name
+          f.type = file.mimeType
+
+          // Add object to fileList
+          window.fileList[f.id] = f
         }
       }
     })
   },
 
   getFileMetadata (id) {
-    console.log('getFileMetadata(" + id + ")')
     // Request to access gapi for drive "gapi.client.drive.files" specifies the API to use,
     // the .get method is the standard Google drive GET method
     // 'fileId' is the file's ID value in string format
@@ -37,9 +33,26 @@ export default{
     let request = gapi.client.drive.files.get({
       'fileId': id, 'fields': '*'
     })
-    // Executes API request, outputting object to 'response'
+    // Executes API request
     request.execute(function (response) {
-      console.log(response)
+
+      // Add metadata to object in fileList
+      window.fileList[id].createdTime = response.createdTime
+      window.fileList[id].modifiedTime = response.modifiedTime
+
+      let owner = response.owners[0]
+      window.fileList[id].owner = {
+        name: owner.displayName,
+        email: owner.emailAddress
+      }
+
+      window.fileList[id].sharedWith = []
+      for (let i = 0; i < response.permissions.length; i++) {
+        window.fileList[id].sharedWith.push({
+          name: response.permissions[i].displayName,
+          email: response.permissions[i].emailAddress
+        })
+      }
     })
   },
 

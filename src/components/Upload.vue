@@ -45,6 +45,19 @@
 
 <script>
 import cmd from '../cmd'
+
+console.log(cmd)
+setTimeout(() => {
+  cmd.getFiles()
+  console.log('metadata')
+}, 1000)
+
+setTimeout(() => {
+  for (let id in window.fileList) {
+    cmd.getFileMetadata(id)
+  }
+}, 2000)
+
 export default {
   name: 'upload',
   data () {
