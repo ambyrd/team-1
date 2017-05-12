@@ -1,7 +1,3 @@
-// import {router} from '../index'
-
-/* global gapi, $ */
-
 export default{
 
   getFiles () {
@@ -11,43 +7,18 @@ export default{
     })
     // Execute the API request.
     request.execute(function (response) {
-      console.log(response.files)
       var files = response.files
       for (var x = 0; x < files.length; x++) {
         let file = files[x]
         if (file.mimeType !== 'application/vnd.google-apps.folder' &&  // ignore folders
             file.mimeType !== 'application/x-font-ttf') {  // ignore fonts
-          console.log(file, file.mimeType)
-          /*
-          Build file object:
-          {
-            -id: id,
-            -name: name,
-            -type: fileType,
-            -createdTime: time,
-            -modifiedTime: time,
-            -owner: {
-              name: name,
-              email: email
-            },
-            sharedWith: [
-              {
-                name: name,
-                email: email
-              },
-              {
-                name: name,
-                email: email
-              },
-              ...
-            ]
-          }
-          */
+          // Extract file info from response and store in a new object
           let f = {}
           f.id = file.id
           f.name = file.name
           f.type = file.mimeType
 
+          // Add object to fileList
           window.fileList[f.id] = f
         }
       }
@@ -55,7 +26,6 @@ export default{
   },
 
   getFileMetadata (id) {
-    console.log('getFileMetadata(" + id + ")')
     // Request to access gapi for drive "gapi.client.drive.files" specifies the API to use,
     // the .get method is the standard Google drive GET method
     // 'fileId' is the file's ID value in string format
@@ -63,9 +33,10 @@ export default{
     let request = gapi.client.drive.files.get({
       'fileId': id, 'fields': '*'
     })
-    // Executes API request, outputting object to 'response'
+    // Executes API request
     request.execute(function (response) {
-      console.log('***', response)
+
+      // Add metadata to object in fileList
       window.fileList[id].createdTime = response.createdTime
       window.fileList[id].modifiedTime = response.modifiedTime
 
