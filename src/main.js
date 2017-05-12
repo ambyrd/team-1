@@ -57,9 +57,6 @@ new Vue({
         $('#sign-in-or-out-button').click(function () {
           vue.handleAuthClick()
         })
-        $('#revoke-access-button').click(function () {
-          vue.revokeAccess()
-        })
       })
     },
 
@@ -73,10 +70,6 @@ new Vue({
       }
     },
 
-    revokeAccess: function () {
-      this.googleAuth.disconnect()
-    },
-
     setSigninStatus: function () {
       console.log(this)
       console.log(this.scope)
@@ -87,13 +80,10 @@ new Vue({
       console.log('isAuthorized', window.isAuthorized)
       if (window.isAuthorized) {
         $('#sign-in-or-out-button').html('Sign out')
-        $('#revoke-access-button').css('display', 'inline-block')
-        $('#auth-status').html('You are currently signed in and have granted ' +
-            'access to this app.')
+        $('#auth-status').html('You are currently signed in and have access to this app.')
       } else {
         $('#sign-in-or-out-button').html('Sign In/Authorize')
-        $('#revoke-access-button').css('display', 'none')
-        $('#auth-status').html('You have not authorized this app or you are ' +
+        $('#auth-status').html('You have not authorized to use this app or you are ' +
             'signed out.')
       }
     },

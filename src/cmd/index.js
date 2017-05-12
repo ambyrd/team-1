@@ -35,7 +35,6 @@ export default{
     })
     // Executes API request
     request.execute(function (response) {
-
       // Add metadata to object in fileList
       window.fileList[id].createdTime = response.createdTime
       window.fileList[id].modifiedTime = response.modifiedTime

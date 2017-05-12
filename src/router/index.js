@@ -19,8 +19,8 @@ const rooter = new Router({
       path: '/upload/:filename?',
       name: 'Upload',
       component: Upload,
-      beforeEnter: (to, from, next) => {
-        if (to.name === 'Upload') {
+      beforeRouteUpdate: (to, from, next) => {
+        if (to.name === 'Upload' && from.name === 'Hello') {
           if (window.isAuthorized) {
             next()
           } else {
