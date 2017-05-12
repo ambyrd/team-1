@@ -9,20 +9,46 @@ export default{
       'method': 'GET',
       'path': '/drive/v3/files'
     })
-        // Execute the API request.
+    // Execute the API request.
     request.execute(function (response) {
-      console.log(response)
+      console.log(response.files)
       var files = response.files
       for (var x = 0; x < files.length; x++) {
         let file = files[x]
-        if (file.mimeType !== 'application/vnd.google-apps.folder') {
+        if (file.mimeType !== 'application/vnd.google-apps.folder' &&  // ignore folders
+            file.mimeType !== 'application/x-font-ttf') {  // ignore fonts
           console.log(file, file.mimeType)
-          let btnInfo = $('<button/>', {onclick: "getFileMetadata('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Info'})
-          let btnPerm = $('<button/>', {onclick: "getFilePermissions('" + file.id + "')", class: 'btn btn-outline-success space-left', text: 'Get Permissions'})
-          let div = $('<div/>', {class: 'list-group-item list-group-item-action', text: file.name})
-          div.append(btnInfo)
-          div.append(btnPerm)
-          $('#file-list').append(div)
+          /*
+          Build file object:
+          {
+            -id: id,
+            -name: name,
+            -type: fileType,
+            -createdTime: time,
+            -modifiedTime: time,
+            -owner: {
+              name: name,
+              email: email
+            },
+            sharedWith: [
+              {
+                name: name,
+                email: email
+              },
+              {
+                name: name,
+                email: email
+              },
+              ...
+            ]
+          }
+          */
+          let f = {}
+          f.id = file.id
+          f.name = file.name
+          f.type = file.mimeType
+
+          window.fileList[f.id] = f
         }
       }
     })
@@ -39,7 +65,23 @@ export default{
     })
     // Executes API request, outputting object to 'response'
     request.execute(function (response) {
-      console.log(response)
+      console.log('***', response)
+      window.fileList[id].createdTime = response.createdTime
+      window.fileList[id].modifiedTime = response.modifiedTime
+
+      let owner = response.owners[0]
+      window.fileList[id].owner = {
+        name: owner.displayName,
+        email: owner.emailAddress
+      }
+
+      window.fileList[id].sharedWith = []
+      for (let i = 0; i < response.permissions.length; i++) {
+        window.fileList[id].sharedWith.push({
+          name: response.permissions[i].displayName,
+          email: response.permissions[i].emailAddress
+        })
+      }
     })
   },
 
