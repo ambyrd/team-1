@@ -67,5 +67,30 @@ export default{
       let permissions = perObj[0]
       console.log(permissions)
     })
+  },
+
+  getOwnerName (id) {
+    let ownerName = window.fileList[id].owner.name
+    return ownerName
+  },
+
+  getOwnerEmail (id) {
+    let ownerEmail = window.fileList[id].owner.email
+    return ownerEmail
+  },
+
+  getSharedUsers (id) {
+    let sharedUsers = window.fileList[id].sharedWidth
+    return sharedUsers
+  },
+
+  getSharedUserName (id, index, getSharedUsers) {
+    let sharedUserName = getSharedUsers(id)[index].name
+    return sharedUserName
+  },
+
+  getSharedUserEmail (id, index, getSharedUsers) {
+    let sharedUserEmail = getSharedUsers(id)[index].email
+    return sharedUserEmail
   }
 }
