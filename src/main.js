@@ -2,11 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
+import AsyncComputed from 'vue-async-computed'
 import App from './App'
 import router from './router'
 import cmd from './cmd'
 
 Vue.use(BootstrapVue)
+Vue.use(AsyncComputed)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -32,12 +34,10 @@ new Vue({
 
   methods: {
     loadDriveApi: function () {
-      console.log('loadDriveApi', this.initClient)
       gapi.load('client:auth2', this.initClient)
     },
 
     initClient: function () {
-      console.log('initClient')
       let vue = this
       gapi.client.init({
         'clientId': 'YOUR_CLIENT_ID',
@@ -46,7 +46,6 @@ new Vue({
         'scope': this.scope
       })
       .then(function () {
-        console.log('gapi.client.init.then')
         vue.googleAuth = gapi.auth2.getAuthInstance()
         // console.log('setsigningstatsu', this.setSigninStatus)
         console.log(this)
@@ -75,13 +74,8 @@ new Vue({
     },
 
     setSigninStatus: function () {
-      console.log(this)
-      console.log(this.scope)
-      console.log(this.googleAuth)
       var user = this.googleAuth.currentUser.get()
-      console.log('user', user)
       window.isAuthorized = user.hasGrantedScopes(this.scope)
-      console.log('isAuthorized', window.isAuthorized)
       if (window.isAuthorized) {
         $('#sign-in-or-out-button').html('Sign out')
         $('#auth-status').html('You are currently signed in and have access to this app.')
@@ -94,58 +88,6 @@ new Vue({
 
     updateSigninStatus: function (isSignedIn) {
       this.setSigninStatus()
-    },
-
-    getFiles: function () {
-      var request = gapi.client.request({
-        'method': 'GET',
-        'path': '/drive/v3/files'
-      })
-      // Execute the API request.
-      request.execute(function (response) {
-        console.log(response)
-        var files = response.files
-        for (var x = 0; x < files.length; x++) {
-          let file = files[x]
-          if (file.mimeType !== 'application/vnd.google-apps.folder') {
-            console.log(file, file.mimeType)
-            let btnInfo = $('<button/>', {onclick: 'getFileMetadata(' + file.id + ')', class: 'btn btn-outline-success space-left', text: 'Get Info'})
-            let btnPerm = $('<button/>', {onclick: 'getFilePermissions(' + file.id + ')', class: 'btn btn-outline-success space-left', text: 'Get Permissions'})
-            let div = $('<div/>', {class: 'list-group-item list-group-item-action', text: file.name})
-            div.append(btnInfo)
-            div.append(btnPerm)
-            $('#file-list').append(div)
-          }
-        }
-      })
-    },
-
-    getFileMetadata: function (id) {
-      console.log('getFileMetadata(' + id + ')')
-      // Request to access gapi for drive 'gapi.client.drive.files' specifies the API to use,
-      // the .get method is the standard Google drive GET method
-      // 'fileId' is the file's ID value in string format
-      // 'fields' allows for specific subfields to be pulled by listing which ones you want delimitted by a space, with '*' pulling all fields
-      var request = gapi.client.drive.files.get({
-        'fileId': id, 'fields': '*'
-      })
-      // Executes API request, outputting object to 'response'
-      request.execute(function (response) {
-        console.log(response)
-      })
-    },
-
-    getFilePermissions: function (id) {
-      console.log('getFilePermissions(' + id + ')')
-      var request = gapi.client.drive.files.get({
-        'fileId': id, 'fields': 'permissions'
-      })
-      request.execute(function (response) {
-        let perMetaDataObj = response
-        let perObj = perMetaDataObj.permissions
-        let permissions = perObj[0]
-        console.log(permissions)
-      })
     }
   }
 })
