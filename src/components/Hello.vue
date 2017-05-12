@@ -21,11 +21,23 @@
 </template>
 
 <script>
+import cmd from '../cmd'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    getFiles () {
+      cmd.getFiles()
+    },
+    getFileMetadata () {
+      cmd.getFileMetadata()
+    },
+    getFilePermissions () {
+      cmd.getFilePermissions()
     }
   }
 }
