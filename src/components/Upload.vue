@@ -37,11 +37,31 @@
     <br>
     <div class="buttons">
       <button name="downloadBtn" href="#">Download</button>
-      <input type="file" id="myFiles"> Upload
+      <input type="file" id="files" name="files[]" multiple />
+      <output id="list"></output>
       <button name="deleteBtn" href="#">Delete</button>
     </div>
   </div>
 </template>
+
+<script>
+function handleFileSelect (evt) {
+  var files = evt.target.files // FileList object
+
+  // files is a FileList of File objects. List some properties.
+  var output = []
+  for (var i = 0, f; f < files.length; i++) {
+    f = files[i]
+    output.push(escape(f.name), '(', f.type || 'n/a', ') - ',
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>')
+  }
+  document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>'
+}
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false)
+</script>
 
 <script>
 import cmd from '../cmd'
