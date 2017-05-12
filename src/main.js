@@ -39,8 +39,8 @@ new Vue({
       console.log('initClient')
       let vue = this
       gapi.client.init({
-        'clientId': '122169859841-5de7abc8a7hhqf8jt0ri64bf20uh1rbj.apps.googleusercontent.com',
-        'apiKey': 'AIzaSyB4EZzDvjqQFtyeXHezEzIH7xcCAVxLpYk',
+        'clientId': 'YOUR_CLIENT_ID',
+        'apiKey': 'YOUR_API_KEY',
         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
         'scope': this.scope
       })
