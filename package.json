@@ -17,7 +17,7 @@
     "google-auth-library": "^0.10.0",
     "googleapis": "^18.0.0",
     "vue": "^2.2.2",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.5.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
