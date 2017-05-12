@@ -7,7 +7,7 @@ import History from '@/components/History'
 
 Vue.use(Router)
 
-export default new Router({
+const rooter = new Router({
   mode: 'history',
   routes: [
     {
@@ -18,7 +18,16 @@ export default new Router({
     {
       path: '/upload/:filename?',
       name: 'Upload',
-      component: Upload
+      component: Upload,
+      beforeEnter: (to, from, next) => {
+        if (to.name === 'Upload') {
+          if (window.isAuthorized) {
+            next()
+          } else {
+            next(false)
+          }
+        }
+      }
     },
     {
       path: '/permissions',
@@ -32,3 +41,17 @@ export default new Router({
     }
   ]
 })
+
+console.log(rooter)
+
+/* rooter.beforeResolve((to, from, next) => {
+  if (to.name === 'Upload') {
+    if (window.googleAuth.isSignedIn()) {
+      next()
+    } else {
+      next(false)
+    }
+  }
+}) */
+
+export default rooter
