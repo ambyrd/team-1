@@ -22,6 +22,7 @@
 
 <script>
 import cmd from '../cmd'
+
 export default {
   name: 'hello',
   data () {

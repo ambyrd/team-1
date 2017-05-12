@@ -40,30 +40,18 @@ export default {
   data () {
     return {
       files: [{
-        name: 'HelloWorld.txt',
-        owner: 'GDrive User',
-        permissions: 'Read, Write'
+        name: 'HelloWorld.txt'
       },
       {
-        name: 'Image.png',
-        owner: 'GDrive User',
-        permissions: 'Read'
+        name: 'Image.png'
       },
       {
-        name: 'script.js',
-        owner: 'GDrive User',
-        permissions: 'Read'
+        name: 'script.js'
       }],
       fields: {
         name: {
           label: 'Filename',
           sortable: true
-        },
-        owner: {
-          label: 'Owner'
-        },
-        permissions: {
-          label: 'Permissions'
         }
       },
       currentPage: null,
