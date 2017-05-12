@@ -24,11 +24,14 @@
   </b-navbar>
 
   <!-- Table of files and their permissions -->
-  <b-table striped hover :items="files" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
-    <template slot="name" scope="item" class="tableVar">
-      {{item.value}}
-    </template>
-  </b-table>
+  <div class="tableArea">
+    <b-table striped hover :items="files" :fields="fields1" :current-page="currentPage" :per-page="perPage" :filter="filter">
+      <template slot="name" scope="item" class="tableVar">
+        {{item.value}}
+      </template>
+    </b-table>
+  </div>
+  
   </div>
 </template>
 
@@ -48,9 +51,24 @@ export default {
       {
         name: 'script.js'
       }],
-      fields: {
+      owners: [{
+        name: 'Bob'
+      },
+      {
+        name: 'Jim'
+      },
+      {
+        name: 'Bill'
+      }],
+      fields1: {
         name: {
           label: 'Filename',
+          sortable: true
+        }
+      },
+      fields2: {
+        name: {
+          label: 'Owners',
           sortable: true
         }
       },
@@ -69,5 +87,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.tableArea {
+ position: static;
+ left: 0px; 
+ max-width: 400px; 
+ margin:5px; 
+ 
+}
+</style>
 
 </style>
