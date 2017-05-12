@@ -4,6 +4,7 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+import cmd from './cmd'
 
 Vue.use(BootstrapVue)
 
@@ -57,6 +58,9 @@ new Vue({
         $('#sign-in-or-out-button').click(function () {
           vue.handleAuthClick()
         })
+
+        // Initialize global file list
+        cmd.getFiles()
       })
     },
 
