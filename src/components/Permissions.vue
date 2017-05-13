@@ -16,6 +16,7 @@
          <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
         <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
         <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
+        <router-link to="/admin" class="adminLink"><b-nav-item >View Admin Page</b-nav-item></router-link>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
@@ -31,7 +32,7 @@
       </template>
     </b-table>
   </div>
-  
+
   </div>
 </template>
 
@@ -89,10 +90,10 @@ export default {
 <style scoped>
 .tableArea {
  position: static;
- left: 0px; 
- max-width: 400px; 
- margin:5px; 
- 
+ left: 0px;
+ max-width: 400px;
+ margin:5px;
+
 }
 </style>
 
