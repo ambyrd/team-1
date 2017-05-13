@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import cmd from '../cmd'
 let f = window.fileList
 
 export default {
@@ -83,27 +84,61 @@ export default {
 
   methods: {
     showOwnerInfo: function (fileId) {
-      document.getElementById('shared').style.display = 'none'
-      document.getElementById('owner').style.display = null
-      console.log('hi')
-      for (let id in f) {
-        if (id === fileId) {
-          console.log(f[id].owner.name)
-          this.owner = f[id].owner.name
-          this.email = f[id].owner.email
+      if (!window.fileList[fileId].owner) {
+        cmd.getFileMetadata(fileId)
+        setTimeout(() => {
+          document.getElementById('shared').style.display = 'none'
+          document.getElementById('owner').style.display = null
+          console.log('hi')
+          for (let id in f) {
+            if (id === fileId) {
+              console.log(f[id].owner.name)
+              this.owner = f[id].owner.name
+              this.email = f[id].owner.email
+            }
+          }
+        }, 1000)
+      } else {
+        document.getElementById('shared').style.display = 'none'
+        document.getElementById('owner').style.display = null
+        console.log('hi')
+        for (let id in f) {
+          if (id === fileId) {
+            console.log(f[id].owner.name)
+            this.owner = f[id].owner.name
+            this.email = f[id].owner.email
+          }
         }
       }
     },
     showSharedInfo: function (fileId) {
-      document.getElementById('owner').style.display = 'none'
-      document.getElementById('shared').style.display = null
-      for (let id in f) {
-        if (id === fileId) {
-          console.log('hi')
-          for (var i = 0; i < f[id].sharedWith.length; i++) {
-            console.log(f[id].sharedWith[i].name)
-            this.shared = f[id].sharedWith[i].name
-            this.sharedEmail = f[id].sharedWith[i].email
+      if (!window.fileList[fileId].owner) {
+        cmd.getFileMetadata(fileId)
+        setTimeout(() => {
+          document.getElementById('owner').style.display = 'none'
+          document.getElementById('shared').style.display = null
+          for (let id in f) {
+            if (id === fileId) {
+              console.log('hi')
+              for (var i = 0; i < f[id].sharedWith.length; i++) {
+                console.log(f[id].sharedWith[i].name)
+                this.shared = f[id].sharedWith[i].name
+                this.sharedEmail = f[id].sharedWith[i].email
+              }
+            }
+          }
+        }, 1000)
+      } else {
+        document.getElementById('owner').style.display = 'none'
+        document.getElementById('shared').style.display = null
+        for (let id in f) {
+          if (id === fileId) {
+            // console.log('hi')
+            for (var i = 0; i < f[id].sharedWith.length; i++) {
+              console.log(f[id].sharedWith[i].name)
+              this.shared = f[id].sharedWith[i].name
+              this.sharedEmail = f[id].sharedWith[i].email
+            }
           }
         }
       }
