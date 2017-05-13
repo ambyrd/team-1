@@ -63,3 +63,7 @@ You will import these methods into each vue by using `import cmd from '../cmd'` 
 ## Authentication Script location has changed!
 
 The Authentication script (the place where the api key goes) has changed to main.js
+
+The API key and Client ID will be inserted in the initClient method in main.js
+
+![VueImportMethodFormat](/docs/aki_key.png?raw=true)
