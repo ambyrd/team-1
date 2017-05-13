@@ -67,6 +67,8 @@ new Vue({
       if (this.googleAuth.isSignedIn.get()) {
         // User is authorized and has clicked 'Sign out' button.
         this.googleAuth.signOut()
+        window.isAuthorized = false
+        this.$router.push({ name: 'Hello' })
       } else {
         // User is not signed in. Start Google auth flow.
         this.googleAuth.signIn()
@@ -76,6 +78,7 @@ new Vue({
     setSigninStatus: function () {
       var user = this.googleAuth.currentUser.get()
       window.isAuthorized = user.hasGrantedScopes(this.scope)
+      console.log('main Auth:', window.isAuthorized)
       if (window.isAuthorized) {
         $('#sign-in-or-out-button').html('Sign out')
         $('#auth-status').html('You are currently signed in and have access to this app.')
