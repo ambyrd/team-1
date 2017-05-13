@@ -16,6 +16,7 @@
        <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
        <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
        <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
+       <router-link to="/admin" class="adminLink"><b-nav-item >View Admin Page</b-nav-item></router-link>
      </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
@@ -26,19 +27,23 @@
   <b-list-group class="file-list" id="file-list">
    <b-list-group-item v-for='f in files' :key='f.id'>
     {{ f.name }}
+    <div class='buttons' v-if="f.id !== 'dummy'">
+    <button name="downloadBtn" @click='downloadFile(f.id)'>Download</button>
+    <button name="deleteBtn" @click='deleteFile(f.id)'>Delete</button>
+    </div>
    </b-list-group-item>
   </b-list-group>
     <br>
     <div class="buttons">
-      <button name="downloadBtn" href="#">Download</button>
       <input type="file" id="files" name="files[]" multiple />
       <output id="list"></output>
-      <button name="deleteBtn" href="#">Delete</button>
     </div>
   </div>
 </template>
 
 <script>
+import cmd from '../cmd/'
+
 export default {
   name: 'upload',
 
@@ -53,6 +58,15 @@ export default {
       },
       default: [{id: 'dummy', name: '...Loading...'}]
     }
+  },
+
+  methods: {
+    downloadFile: function (fileId) {
+      cmd.downloadFile(fileId)
+    },
+    deleteFile: function (fileId) {
+      cmd.deleteFile(fileId)
+    }
   }
 }
  </script>
@@ -60,6 +74,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .buttons{
+  padding-left: 5px;
   text-align: center
 }
 </style>

@@ -1,4 +1,4 @@
-export default{
+export default {
 
   getFiles () {
     var request = gapi.client.request({
@@ -38,6 +38,7 @@ export default{
       // Add metadata to object in fileList
       window.fileList[id].createdTime = response.createdTime
       window.fileList[id].modifiedTime = response.modifiedTime
+      window.fileList[id].link = response.webContentLink
 
       let owner = response.owners[0]
       window.fileList[id].owner = {
@@ -69,6 +70,29 @@ export default{
     })
   },
 
+  downloadFile (id) {
+    if (!window.fileList[id].link) {
+      // Need to get file's metadata first
+      this.getFileMetadata(id)
+      setTimeout(() => {
+        let link = window.fileList[id].link
+        location.assign(link)
+      }, 1000)
+    } else {
+      // File metadata already exists in the fileList, so we can access it right away
+      let link = window.fileList[id].link
+      location.assign(link)
+    }
+  },
+
+  deleteFile (id) {
+    let request = gapi.client.drive.files.delete({
+      'fileId': id
+    })
+    request.execute(function (response) {})
+    delete window.fileList[id]  // remove element from fileList
+  },
+
   getOwnerName (id) {
     let ownerName = window.fileList[id].owner.name
     return ownerName
@@ -92,5 +116,13 @@ export default{
   getSharedUserEmail (id, index, getSharedUsers) {
     let sharedUserEmail = getSharedUsers(id)[index].email
     return sharedUserEmail
+  },
+  getTimeCreated (id) {
+    let timeCreated = window.fileList[id].createdTime
+    return timeCreated
+  },
+  getTimeModified (id) {
+    let timeModified = window.fileList[id].modifiedTime
+    return timeModified
   }
 }

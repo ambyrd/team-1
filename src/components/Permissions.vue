@@ -16,6 +16,7 @@
          <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
         <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
         <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
+        <router-link to="/admin" class="adminLink"><b-nav-item >View Admin Page</b-nav-item></router-link>
       </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">
@@ -47,19 +48,8 @@
      <br></br>
      Email: {{ email }} </b-list-group> </div>
   </b-list-group>
+  </div>
 
-  <!-- <div class="tableArea">
-    <b-table striped hover :items="files" :fields="fields1" :current-page="currentPage" :per-page="perPage" :filter="filter">
-      <template slot="name" scope="item" class="tableVar">
-        {{item.value}}
-      </template>
-    </b-table>
-  </div> -->
-  <!-- <b-list-group class="file-list buttons" id="file-list buttons">
-   <b-list-group-item v-for='f in files' :key='f.id'>
-    {{ <button v-on:click="console.log(hi)">Shared</button> }}
-   </b-list-group-item>
-  </b-list-group> -->
 
   </div>
 </template>
@@ -128,9 +118,16 @@ export default {
 <style scoped>
 .file-list {
  position: static;
+<<<<<<< HEAD
  left: 0%;
  max-width: 50%;
  margin:5px;
+=======
+ left: 0px;
+ max-width: 400px;
+ margin:5px;
+
+>>>>>>> master
 }
 
 .perm {

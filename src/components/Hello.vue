@@ -13,7 +13,7 @@
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         -->
-        <router-link to="/upload" onclick="getFiles()"><button name="btn1" href="#">Go!</button></router-link>
+        <button name="btn1" href="#" @click= 'goToUpload()'>Go!</button>
       </form>
 
     </b-jumbotron>
@@ -26,6 +26,15 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    goToUpload () {
+      if (window.isAuthorized) {
+        this.$router.push({ name: 'Upload' })
+      } else {
+        alert('You are not AUTHORIZED to use this app, please sign in at the bottom')
+      }
     }
   }
 }
