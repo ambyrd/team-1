@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Upload from '@/components/Upload'
-import Loading from '@/components/Loading'
 import Permissions from '@/components/Permissions'
 import History from '@/components/History'
 
@@ -14,14 +13,9 @@ const rooter = new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/upload/:filename?',
-      name: 'Upload',
-      component: Upload,
-      beforeRouteUpdate: (to, from, next) => {
-        if (to.name === 'Upload' && from.name === 'Loading') {
+      component: Hello,
+      beforeRouteUpdated: (to, from, next) => {
+        if (to.name === 'Upload') {
           if (window.isAuthorized) {
             next()
           } else {
@@ -31,11 +25,11 @@ const rooter = new Router({
       }
     },
     {
-      path: '/loading/',
-      name: 'Loading',
-      component: Loading,
+      path: '/upload/:filename?',
+      name: 'Upload',
+      component: Upload,
       beforeRouteUpdate: (to, from, next) => {
-        if (to.name === 'Loading' && from.name === 'Hello') {
+        if (to.name === 'Upload') {
           if (window.isAuthorized) {
             next()
           } else {
