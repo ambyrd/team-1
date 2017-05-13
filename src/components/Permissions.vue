@@ -55,8 +55,6 @@
 </template>
 
 <script>
-document.getElementById('shared').style.display = 'none'
-document.getElementById('owner').style.display = 'none'
 let f = window.fileList
 
 export default {
@@ -118,7 +116,6 @@ export default {
 <style scoped>
 .file-list {
  position: static;
-<<<<<<< HEAD
  left: 0%;
  max-width: 50%;
  margin:5px;
@@ -126,8 +123,6 @@ export default {
  left: 0px;
  max-width: 400px;
  margin:5px;
-
->>>>>>> master
 }
 
 .perm {
