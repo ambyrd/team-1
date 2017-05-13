@@ -92,5 +92,13 @@ export default{
   getSharedUserEmail (id, index, getSharedUsers) {
     let sharedUserEmail = getSharedUsers(id)[index].email
     return sharedUserEmail
+  },
+  getTimeCreated (id) {
+    let timeCreated = window.fileList[id].createdTime
+    return timeCreated
+  },
+  getTimeModified (id) {
+    let timeModified = window.fileList[id].modifiedTime
+    return timeModified
   }
 }

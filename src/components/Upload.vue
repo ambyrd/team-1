@@ -16,6 +16,7 @@
        <router-link to="/upload" class="uploadLink"><b-nav-item >Upload/Download Files</b-nav-item></router-link>
        <router-link to="/permissions" class="permissionsLink"><b-nav-item >View File Permissions</b-nav-item></router-link>
        <router-link to="/history" class="historyLink"><b-nav-item >View Access History</b-nav-item></router-link>
+       <router-link to="/admin" class="adminLink"><b-nav-item >View Admin Page</b-nav-item></router-link>
      </b-nav>
 
       <b-nav is-nav-bar class="ml-auto">

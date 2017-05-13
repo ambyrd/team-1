@@ -5,6 +5,7 @@ import Upload from '@/components/Upload'
 import Loading from '@/components/Loading'
 import Permissions from '@/components/Permissions'
 import History from '@/components/History'
+import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ const rooter = new Router({
       path: '/history',
       name: 'History',
       component: History
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     }
   ]
 })
