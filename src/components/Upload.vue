@@ -26,14 +26,15 @@
   <b-list-group class="file-list" id="file-list">
    <b-list-group-item v-for='f in files' :key='f.id'>
     {{ f.name }}
+    <br />
+    <button name="downloadBtn">Download</button>
+    <button name="deleteBtn">Delete</button>
    </b-list-group-item>
   </b-list-group>
     <br>
     <div class="buttons">
-      <button name="downloadBtn" href="#">Download</button>
       <input type="file" id="files" name="files[]" multiple />
       <output id="list"></output>
-      <button name="deleteBtn" href="#">Delete</button>
     </div>
   </div>
 </template>
@@ -48,7 +49,7 @@ export default {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve(window.fileList)
-          }, 5000)
+          }, 1000)
         })
       },
       default: [{id: 'dummy', name: '...Loading...'}]
