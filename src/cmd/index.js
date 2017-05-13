@@ -85,6 +85,7 @@ export default {
       'fileId': id
     })
     request.execute(function (response) {})
+    delete window.fileList[id]  // remove element from fileList
   },
 
   getOwnerName (id) {
