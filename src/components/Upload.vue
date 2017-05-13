@@ -26,7 +26,7 @@
   <b-list-group class="file-list" id="file-list">
    <b-list-group-item v-for='f in files' :key='f.id'>
     {{ f.name }}
-    <div class='buttons'>
+    <div class='buttons' v-if="f.id !== 'dummy'">
     <button name="downloadBtn" @click='downloadFile(f.id)'>Download</button>
     <button name="deleteBtn" @click='deleteFile(f.id)'>Delete</button>
     </div>
