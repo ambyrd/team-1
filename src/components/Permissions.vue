@@ -24,62 +24,101 @@
   </b-navbar>
 
   <!-- Table of files and their permissions -->
-  <div class="tableArea">
+  <b-list-group class="file-list" id="file-list">
+   <b-list-group-item v-for='f in files' :key='f.id'>
+    {{ f.name }}
+    <br>
+    <button v-on:click="showOwnerInfo(f.id)"> Owner </button>
+    </br>
+    <br>
+    <button v-on:click="showSharedInfo(f.id)"> Shared </button>
+  </br>
+   </b-list-group-item>
+   <div id = "shared">
+    <b-list-group class = "perm">
+      Shared Users: {{ shared }}
+      <br></br>
+      User Emails: {{ sharedEmail }}
+   </b-list-group>
+  </div>
+
+   <div id = "owner"> <b-list-group class = "perm">
+     Owner: {{ owner }}
+     <br></br>
+     Email: {{ email }} </b-list-group> </div>
+  </b-list-group>
+
+  <!-- <div class="tableArea">
     <b-table striped hover :items="files" :fields="fields1" :current-page="currentPage" :per-page="perPage" :filter="filter">
       <template slot="name" scope="item" class="tableVar">
         {{item.value}}
       </template>
     </b-table>
-  </div>
-  
+  </div> -->
+  <!-- <b-list-group class="file-list buttons" id="file-list buttons">
+   <b-list-group-item v-for='f in files' :key='f.id'>
+    {{ <button v-on:click="console.log(hi)">Shared</button> }}
+   </b-list-group-item>
+  </b-list-group> -->
+
   </div>
 </template>
 
 <script>
-import cmd from '../cmd'
+document.getElementById('shared').style.display = 'none'
+document.getElementById('owner').style.display = 'none'
+let f = window.fileList
 
 export default {
   name: 'permissions',
+
   data () {
     return {
-      files: [{
-        name: 'HelloWorld.txt'
-      },
-      {
-        name: 'Image.png'
-      },
-      {
-        name: 'script.js'
-      }],
-      owners: [{
-        name: 'Bob'
-      },
-      {
-        name: 'Jim'
-      },
-      {
-        name: 'Bill'
-      }],
-      fields1: {
-        name: {
-          label: 'Filename',
-          sortable: true
-        }
-      },
-      fields2: {
-        name: {
-          label: 'Owners',
-          sortable: true
-        }
-      },
-      currentPage: null,
-      perPage: null,
-      filter: null
+      owner: '',
+      email: '',
+      shared: '',
+      sharedEmail: ''
     }
   },
+  asyncComputed: {
+    files: {
+      get () {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(window.fileList)
+          }, 2000)
+        })
+      },
+      default: [{id: 'dummy', name: '...Loading...'}]
+    }
+  },
+
   methods: {
-    getFilePermissions () {
-      cmd.getFilePermissions()
+    showOwnerInfo: function (fileId) {
+      document.getElementById('shared').style.display = 'none'
+      document.getElementById('owner').style.display = null
+      console.log('hi')
+      for (let id in f) {
+        if (id === fileId) {
+          console.log(f[id].owner.name)
+          this.owner = f[id].owner.name
+          this.email = f[id].owner.email
+        }
+      }
+    },
+    showSharedInfo: function (fileId) {
+      document.getElementById('owner').style.display = 'none'
+      document.getElementById('shared').style.display = null
+      for (let id in f) {
+        if (id === fileId) {
+          console.log('hi')
+          for (var i = 0; i < f[id].sharedWith.length; i++) {
+            console.log(f[id].sharedWith[i].name)
+            this.shared = f[id].sharedWith[i].name
+            this.sharedEmail = f[id].sharedWith[i].email
+          }
+        }
+      }
     }
   }
 }
@@ -87,13 +126,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.tableArea {
+.file-list {
  position: static;
- left: 0px; 
- max-width: 400px; 
- margin:5px; 
- 
+ left: 0%;
+ max-width: 50%;
+ margin:5px;
 }
-</style>
 
+.perm {
+  position: relative;
+  bottom: 365px;
+  left: 600px;
+}
 </style>

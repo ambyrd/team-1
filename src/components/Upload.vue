@@ -48,7 +48,7 @@ export default {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve(window.fileList)
-          }, 5000)
+          }, 1000)
         })
       },
       default: [{id: 'dummy', name: '...Loading...'}]
