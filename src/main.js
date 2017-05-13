@@ -15,7 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
-window.fileList = []
+window.fileList = {}
 window.isAuthorized = false
 
 /* eslint-disable no-new */
