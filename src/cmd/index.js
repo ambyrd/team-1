@@ -71,13 +71,18 @@ export default {
   },
 
   downloadFile (id) {
-    let request = gapi.client.request({
-      'method': 'GET',
-      'path': '/drive/v3/files/' + id + '?alt=media'
-    })
-    request.execute(function (response) {
-      console.log('Downloaded')
-    })
+    if (!window.fileList[id].link) {
+      // Need to get file's metadata first
+      this.getFileMetadata(id)
+      setTimeout(() => {
+        let link = window.fileList[id].link
+        location.assign(link)
+      }, 1000)
+    } else {
+      // File metadata already exists in the fileList, so we can access it right away
+      let link = window.fileList[id].link
+      location.assign(link)
+    }
   },
 
   deleteFile (id) {
