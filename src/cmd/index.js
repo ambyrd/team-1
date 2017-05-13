@@ -1,4 +1,4 @@
-export default{
+export default {
 
   getFiles () {
     var request = gapi.client.request({
@@ -38,6 +38,7 @@ export default{
       // Add metadata to object in fileList
       window.fileList[id].createdTime = response.createdTime
       window.fileList[id].modifiedTime = response.modifiedTime
+      window.fileList[id].link = response.webContentLink
 
       let owner = response.owners[0]
       window.fileList[id].owner = {
@@ -67,6 +68,23 @@ export default{
       let permissions = perObj[0]
       console.log(permissions)
     })
+  },
+
+  downloadFile (id) {
+    let request = gapi.client.request({
+      'method': 'GET',
+      'path': '/drive/v3/files/' + id + '?alt=media'
+    })
+    request.execute(function (response) {
+      console.log('Downloaded')
+    })
+  },
+
+  deleteFile (id) {
+    let request = gapi.client.drive.files.delete({
+      'fileId': id
+    })
+    request.execute(function (response) {})
   },
 
   getOwnerName (id) {
