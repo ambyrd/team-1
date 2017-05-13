@@ -24,42 +24,62 @@
   </b-navbar>
 
   <b-list-group class="file-list" id="file-list">
-   <b-list-group-item v-for='f in files' :key='f.id'>
+   <b-list-group-item v-for='f in fileList' :key="/upload/ + f.name">
     {{ f.name }}
    </b-list-group-item>
   </b-list-group>
-    <br>
-    <div class="buttons">
-      <button name="downloadBtn" href="#">Download</button>
-      <input type="file" id="files" name="files[]" multiple />
-      <output id="list"></output>
-      <button name="deleteBtn" href="#">Delete</button>
-    </div>
   </div>
 </template>
 
 <script>
+import cmd from '../cmd'
+
+console.log(cmd)
+setTimeout(() => {
+  cmd.getFiles()
+  console.log('metadata')
+}, 1000)
+
+setTimeout(() => {
+  for (let id in window.fileList) {
+    cmd.getFileMetadata(id)
+  }
+}, 2000)
+
 export default {
   name: 'upload',
-
-  asyncComputed: {
-    files: {
-      get () {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve(window.fileList)
-          }, 5000)
-        })
-      },
-      default: [{id: 'dummy', name: '...Loading...'}]
+  data () {
+    return {
+     // Sample data
+      fileList: [
+       { name: 'HelloWorld.txt' },
+       { name: 'Image.png' },
+       { name: 'script.js' }
+      ]
+    }
+  },
+  methods: {
+    getFiles () {
+      cmd.getFiles()
+    },
+    getFileMetadata () {
+      cmd.getFileMetadata()
+    },
+    getFilePermissions () {
+      cmd.getFilePermissions()
     }
   }
 }
+// driveMethods.getFiles()
+
  </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
 .buttons{
   text-align: center
 }
-</style>
+
+</style> 
