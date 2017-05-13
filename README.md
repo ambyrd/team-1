@@ -66,4 +66,4 @@ The Authentication script (the place where the api key goes) has changed to main
 
 The API key and Client ID will be inserted in the initClient method in main.js
 
-![VueImportMethodFormat](/docs/aki_key.png?raw=true)
+![VueImportMethodFormat](/docs/aki_key.jpg?raw=true)
