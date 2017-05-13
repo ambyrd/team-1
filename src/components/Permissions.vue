@@ -127,7 +127,7 @@ export default {
 
 .perm {
   position: relative;
-  bottom: 365px;
+  bottom: 320px;
   left: 600px;
 }
 </style>
